@@ -4,10 +4,15 @@ import { StyleSheet, Text, View, SafeAreaView, ScrollView } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
 
 import HomeScreen from './screens/HomeScreen';
+import WelcomeScreen from './screens/WelcomeScreen';
+
+const getFonts = () => Font.loadAsync({
+  'fredokaone-regular': require('./assets/fonts/FredokaOne-Regular.ttf'),
+});
 
 export default function App() {
   return (
-    <HomeScreen />
+    <WelcomeScreen />
   );
 }
 
