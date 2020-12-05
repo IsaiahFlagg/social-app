@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import HomeScreen from './screens/HomeScreen';
 import WelcomeScreen from './screens/WelcomeScreen';
+import SplashScreen from './screens/SplashScreen';
 
 const getFonts = () => Font.loadAsync({
   'fredokaone-regular': require('./assets/fonts/FredokaOne-Regular.ttf'),
@@ -12,7 +13,8 @@ const getFonts = () => Font.loadAsync({
 
 export default function App() {
   return (
-    <WelcomeScreen />
+    // <WelcomeScreen />
+    <SplashScreen />
   );
 }
 

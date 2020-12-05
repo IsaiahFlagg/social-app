@@ -5,6 +5,7 @@ import { globalStyles } from '../styles/global'
 
 import colors from '../config/colors';
 import LoginForm from '../components/LoginForm';
+import RegisterForm from '../components/RegisterForm';
 
 
 
@@ -42,7 +43,7 @@ export default function WelcomeScreen() {
                             style={styles.modalClose}
                             onPress={() => setRegisterModalOpen(false)}
                         />
-                        <Text> Register </Text>
+                        <RegisterForm />
                     </View>
                 </Modal>
             </View>

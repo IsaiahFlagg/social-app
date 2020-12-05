@@ -6,7 +6,7 @@ import * as yup from 'yup';
 import FlatButton from './FlatButton'
 import { globalStyles } from '../styles/global'
 
-const loginSchema = yup.object({
+const RegisterSchema = yup.object({
     title: yup.string()
         .required()
         .min(4),
@@ -17,15 +17,15 @@ const loginSchema = yup.object({
 
 })
 
-export default function LoginForm() {
+export default function RegisterForm() {
 
 
     return (
         <View style={styles.form}>
-        <Text style={styles.formTitle}>Login</Text>
+        <Text style={styles.formTitle}>Register</Text>
             <Formik
                 initialValues={{ email: '', password: ''}}
-                validationSchema={loginSchema}
+                validationSchema={RegisterSchema}
                 onSubmit={(values, actions) => {
                     actions.resetForm();
                 }} 
@@ -47,6 +47,16 @@ export default function LoginForm() {
                             secureTextEntry={true}
                             style={styles.input}
                             placeholder='password'
+                            onChangeText={props.handleChange('password')}
+                            value={props.values.body}
+                            onBlur={props.handleBlur('password')}
+                        />
+
+                        
+                        <TextInput
+                            secureTextEntry={true}
+                            style={styles.input}
+                            placeholder='confirm password'
                             onChangeText={props.handleChange('password')}
                             value={props.values.body}
                             onBlur={props.handleBlur('password')}
