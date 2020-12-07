@@ -1,5 +1,5 @@
 import React from "react";
-import { TextInput, View, StyleSheet, Text } from 'react-native';
+import { TextInput, View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 
@@ -28,6 +28,7 @@ export default function LoginForm() {
                 validationSchema={loginSchema}
                 onSubmit={(values, actions) => {
                     actions.resetForm();
+                    addUserData(values);
                 }} 
             >
                 {(props) => (
@@ -52,8 +53,9 @@ export default function LoginForm() {
                             onBlur={props.handleBlur('password')}
                         />
                         
-
+                    
                        <FlatButton text='submit' onPress={props.handleSubmit} />
+                      
 
                     </View>
 

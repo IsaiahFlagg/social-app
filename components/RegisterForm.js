@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { TextInput, View, StyleSheet, Text } from 'react-native';
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 
 import FlatButton from './FlatButton'
 import { globalStyles } from '../styles/global'
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const RegisterSchema = yup.object({
-    title: yup.string()
+    email: yup.string()
         .required()
         .min(4),
-    body: yup.string()
+    password: yup.string()
         .required()
         .min(8),
 
@@ -18,21 +19,25 @@ const RegisterSchema = yup.object({
 })
 
 export default function RegisterForm() {
+    const [loginModalOpen, setLoginModalOpen] = useState(false);
+    const [registerModalOpen, setRegisterModalOpen] = useState(true);
 
+    const pressHandler = () => setRegisterModalOpen(false)
 
     return (
         <View style={styles.form}>
-        <Text style={styles.formTitle}>Register</Text>
+            <Text style={styles.formTitle}>Register</Text>
             <Formik
-                initialValues={{ email: '', password: ''}}
+                initialValues={{ email: '', password: '' }}
                 validationSchema={RegisterSchema}
                 onSubmit={(values, actions) => {
                     actions.resetForm();
-                }} 
+                    addUserData(values);
+                }}
             >
                 {(props) => (
                     <View>
-                        
+
 
                         <TextInput
                             style={styles.input}
@@ -41,7 +46,7 @@ export default function RegisterForm() {
                             value={props.values.title}
                             onBlur={props.handleBlur('email')}
                         />
-                      
+
 
                         <TextInput
                             secureTextEntry={true}
@@ -52,7 +57,7 @@ export default function RegisterForm() {
                             onBlur={props.handleBlur('password')}
                         />
 
-                        
+
                         <TextInput
                             secureTextEntry={true}
                             style={styles.input}
@@ -61,9 +66,10 @@ export default function RegisterForm() {
                             value={props.values.body}
                             onBlur={props.handleBlur('password')}
                         />
-                        
 
-                       <FlatButton text='submit' onPress={props.handleSubmit} />
+
+                        <FlatButton text='submit' onPress={props.handleSubmit} />
+
 
                     </View>
 
@@ -73,7 +79,7 @@ export default function RegisterForm() {
     )
 }
 
-                
+
 
 const styles = StyleSheet.create({
     form: {
@@ -87,7 +93,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         borderRadius: 6,
         marginBottom: 50,
-        
+
     },
     formTitle: {
         color: 'hotpink',

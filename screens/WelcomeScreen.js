@@ -13,6 +13,18 @@ export default function WelcomeScreen() {
 
     const [loginModalOpen, setLoginModalOpen] = useState(false);
     const [registerModalOpen, setRegisterModalOpen] = useState(false);
+    const [userData, setUserData] = useState([
+        {email: 'isaiahnflagg@gmail.com', password: 'cisco123', key: '1'},
+    ]);
+
+    const addUserData = (data) => {
+        data.key = Math.random().toString();
+        setUserData((currentUserData) => {
+            return [data, ...currentUserData];
+        });
+        setRegisterModalOpen(false);
+    }
+console.log(userData);
 
     return (
 
@@ -36,15 +48,17 @@ export default function WelcomeScreen() {
             </View>
             <View>
                 <Modal visible={registerModalOpen} animationType='slide'>
-                    <View style={styles.registerModalContent}>
-                        <MaterialIcons
-                            name='close'
-                            size={35}
-                            style={styles.modalClose}
-                            onPress={() => setRegisterModalOpen(false)}
-                        />
-                        <RegisterForm />
-                    </View>
+                    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                        <View style={styles.registerModalContent}>
+                            <MaterialIcons
+                                name='close'
+                                size={35}
+                                style={styles.modalClose}
+                                onPress={() => setRegisterModalOpen(false)}
+                            />
+                            <RegisterForm addUserData={addUserData} />
+                        </View>
+                    </TouchableWithoutFeedback>
                 </Modal>
             </View>
 
